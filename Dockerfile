@@ -2,7 +2,7 @@ FROM python:3.10.13-alpine
 
 LABEL name="Python Application" \   
      maintainer="Ali Kahoot <kahoot.ali@outlook.com>" \
-     summary="A Python application test by Aashan i200491 Section D"
+     summary="A Python application test by i200491 Aashan Section D"
 
 WORKDIR /app
 
