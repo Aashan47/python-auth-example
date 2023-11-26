@@ -1,4 +1,4 @@
-name: Python CI/CD
+name: CI/CD for Python App
 
 on:
   push:
@@ -10,23 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+    - name: Build Docker image
+      run: docker build -t aashan01/python-auth-example:latest .
 
-    - name: Install Dependencies
-      run: |
-        pip install -r requirements.txt
-
-    - name: Build Docker Image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/python-auth-example:latest .
-
-    - name: Log into DockerHub
+    - name: Login to DockerHub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push to DockerHub
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/python-auth-example:latest
+      run: docker push your-dockerhub-username/python-auth-example:latest
